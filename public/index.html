@@ -17,22 +17,22 @@
     <section></section>
     <script>
         const addForm = document.querySelector('form')
-        const nameInput = document.querySelector('input')
+        const wordInput = document.querySelector('input')
         const container = document.querySelector('section')
 
         function submitHandler(e){
             e.preventDefault()
-            axios.post('/api/word', {name: nameInput.value, })
+            axios.post('/api/word', {word: wordInput.value })
                 .then(res => {
                     container.innerHTML = ''
-                    nameInput.value = ''
+                    wordInput.value = ''
 
                     res.data.forEach(existingWord => {
                         container.innerHTML += `<p>${existingWord}</p>`
                     })
                 })
                 .catch(err => {
-                    nameInput.value = ''
+                    wordInput.value = ''
 
                     const notif = document.createElement('aside')
                     notif.innerHTML = `<p>${err.response.data}</p>
